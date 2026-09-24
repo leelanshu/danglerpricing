@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dangler Pricing — Sparsh Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --orange: #E8792C;
+    --orange-dark: #C85F19;
+    --orange-deep: #A44A13;
+    --orange-tint: #FDEEDF;
+    --orange-tint-2: #FBE0C8;
+    --mint: #35D6A0;
+    --ink: #241B12;
+    --ink-soft: #8A7E6C;
+    --paper-bg: #F5F2EA;
+    --card: #FFFFFF;
+    --line: #ECE5D5;
+    --line-strong: #E2D6BC;
+    --pill-bg: #F1ECE0;
+    --shadow: 0 1px 2px rgba(36,27,18,.04), 0 8px 24px -12px rgba(36,27,18,.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --focus: #1B63C7;
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper-bg: #171310;
+      --card: #201A13;
+      --ink: #F1E9DA;
+      --ink-soft: #A99C86;
+      --line: #362B1E;
+      --line-strong: #4A3B27;
+      --pill-bg: #2B2318;
+      --orange-tint: #35240F;
+      --orange-tint-2: #43290F;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper-bg: #171310; --card: #201A13; --ink: #F1E9DA; --ink-soft: #A99C86;
+    --line: #362B1E; --line-strong: #4A3B27; --pill-bg: #2B2318;
+    --orange-tint: #35240F; --orange-tint-2: #43290F;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  html { scroll-padding-top: var(--safe-t); }
+  body {
+    background: var(--paper-bg);
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.5;
+    padding-top: var(--safe-t);
+    padding-bottom: var(--safe-b);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .display { font-family: "Poppins", "Inter", sans-serif; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  button, input { font-family: inherit; font-size: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  /* ---------- header ---------- */
+  header.topbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .brandmark { display: flex; flex-direction: column; }
+  .brandmark .word {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .brandmark .word span { color: var(--orange); }
+  .brandmark .tag {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 1px;
+  }
+  .badge-pill {
+    background: var(--orange-tint);
+    color: var(--orange-dark);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "s1" "hero" "s2" "s3";
+    gap: 16px;
+  }
+  @media (min-width: 860px) {
+    .grid {
+      grid-template-columns: 1.55fr 360px;
+      grid-template-areas:
+        "s1 hero"
+        "s2 hero"
+        "s3 hero";
+      align-items: start;
+      gap: 20px;
+    }
+    .hero-wrap { position: sticky; top: calc(20px + var(--safe-t)); }
+  }
+  .area-s1 { grid-area: s1; }
+  .area-s2 { grid-area: s2; }
+  .area-s3 { grid-area: s3; }
+  .area-hero { grid-area: hero; }
+
+  /* ---------- card ---------- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card:last-child { margin-bottom: 0; }
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .card-head .title { display: flex; align-items: center; gap: 10px; }
+  .step-no {
+    width: 26px; height: 26px;
+    background: var(--orange);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex: none;
+  }
+  .card-head h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .card-head .meta { font-size: 12px; color: var(--ink-soft); }
+
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ---------- pill grid buttons ---------- */
+  .pills { display: grid; gap: 8px; }
+  .pills.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .pills.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .pills.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .pill {
+    border: none;
+    background: var(--pill-bg);
+    color: var(--ink);
+    padding: 12px 6px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background .12s ease, color .12s ease, transform .05s ease;
+  }
+  .pill:active { transform: translateY(1px); }
+  .pill[aria-pressed="true"] { background: var(--orange); color: #fff; }
+
+  .custom-input-row { margin-top: 10px; }
+  .custom-input-row input[type="text"],
+  .custom-input-row input[type="number"],
+  .field input[type="number"] {
+    width: 100%;
+    border: 1px solid var(--line-strong);
+    background: var(--paper-bg);
+    color: var(--ink);
+    border-radius: var(--radius-sm);
+    padding: 11px 13px;
+    -moz-appearance: textfield;
+  }
+  .custom-input-row input::placeholder { color: var(--ink-soft); }
+
+  .info-row {
+    margin-top: 14px;
+    background: var(--orange-tint);
+    border-radius: var(--radius-sm);
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .info-row .t { font-size: 13px; color: var(--orange-dark); font-weight: 500; }
+  .info-row .v { font-family: "Poppins", sans-serif; font-weight: 700; font-size: 20px; color: var(--orange-dark); }
+
+  .field { margin-top: 16px; }
+  .field:first-child { margin-top: 0; }
+  .field .hint { font-size: 11.5px; color: var(--ink-soft); margin-top: 6px; }
+  .field .hint button.link {
+    background: none; border: none; padding: 0;
+    color: var(--orange-dark); text-decoration: underline; cursor: pointer; font-size: inherit;
+  }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(150deg, var(--orange) 0%, var(--orange-dark) 62%, var(--orange-deep) 100%);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    box-shadow: var(--shadow);
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.10);
+  }
+  .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+  .hero-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); margin-top: 3px; }
+  .hero-price {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-top: 10px;
+    letter-spacing: -0.01em;
+    position: relative;
+  }
+  .hero-price sup { font-size: 18px; font-weight: 700; margin-right: 2px; top: -0.6em; }
+
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .stat { background: rgba(255,255,255,0.14); border-radius: var(--radius-sm); padding: 11px 12px; }
+  .stat .t { font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+  .stat .v { font-family: "Poppins", sans-serif; font-weight: 700; font-size: 18px; margin-top: 3px; }
+  .stat.sale .v { color: var(--mint); }
+
+  .share-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 16px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 11px 8px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: rgba(255,255,255,0.95);
+    color: var(--orange-dark);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .12s ease, transform .05s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+  .btn.wa { background: #fff; color: #128C4A; }
+
+  .reset-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    border-radius: var(--radius-sm);
+    padding: 11px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .reset-btn svg { width: 13px; height: 13px; }
+
+  /* ---------- rate settings ---------- */
+  .rate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 14px; }
+  .rate-grid .field { margin-top: 0; }
+  .rate-grid label span.unit { color: var(--ink-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  /* ---------- table ---------- */
+  table.tiers { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.tiers th, table.tiers td { text-align: right; padding: 10px 6px; border-bottom: 1px solid var(--line); }
+  table.tiers th:first-child, table.tiers td:first-child { text-align: left; }
+  table.tiers th { font-weight: 600; color: var(--ink-soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+  table.tiers td.price { font-weight: 700; color: var(--orange-dark); }
+  table.tiers tr.current td { background: var(--orange-tint); }
+  table.tiers tr.current td:first-child::before { content: "→ "; color: var(--orange-dark); }
+  table.tiers tr.current td:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+
+  .list-copy-row { text-align: right; margin-top: 12px; }
+  .list-copy-row button {
+    background: none; border: none; color: var(--orange-dark);
+    text-decoration: underline; font-size: 12px; cursor: pointer; padding: 4px 0; font-weight: 600;
+  }
+
+  footer.page-footer {
+    text-align: center; color: var(--ink-soft); font-size: 11px;
+    max-width: 1040px; margin: 8px auto 0; padding: 0 16px 20px;
+  }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(22px + var(--safe-b));
+    transform: translateX(-50%) translateY(10px);
+    background: var(--ink); color: var(--paper-bg);
+    padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease;
+    z-index: 10; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 420px) {
+    .hero-price { font-size: 34px; }
+    .rate-grid { grid-template-columns: 1fr; }
+    .pills.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brandmark">
+    <div class="word">sparsh<span>media</span></div>
+    <div class="tag">Printing · Branding · Promotional Products</div>
+  </div>
+  <div class="badge-pill">Dangler Price Estimator</div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- STEP 1 -->
+    <section class="card area-s1">
+      <div class="card-head">
+        <div class="title"><span class="step-no">1</span><h2>Select Quantity &amp; Size</h2></div>
+        <div class="meta">How many pieces do you need?</div>
+      </div>
+
+      <span class="label">Quantity</span>
+      <div class="pills cols-3" id="qtySeg" role="group" aria-label="Quantity presets"></div>
+      <div class="custom-input-row">
+        <input type="number" id="qty" min="1" step="1" placeholder="Custom: enter any quantity…" inputmode="numeric" value="1000">
+      </div>
+
+      <div style="margin-top:18px;">
+        <span class="label">Sheet size</span>
+        <div class="pills cols-4" id="sheetSeg" role="group" aria-label="Sheet size">
+          <button type="button" class="pill" data-size="a3" aria-pressed="false">A3 · 1/sht</button>
+          <button type="button" class="pill" data-size="a4" aria-pressed="false">A4 · 2/sht</button>
+          <button type="button" class="pill" data-size="a5" aria-pressed="true">A5 · 4/sht</button>
+          <button type="button" class="pill" data-size="custom" aria-pressed="false">Custom</button>
+        </div>
+        <div class="custom-input-row" id="customPcsWrap" style="display:none;">
+          <input type="number" id="customPcs" min="1" step="1" placeholder="Pieces per sheet" value="4">
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="t">Sheets required</span>
+        <span class="v tnum" id="sheetsReq">0</span>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <div class="area-hero hero-wrap">
+      <div class="hero">
+        <div class="hero-label">Total Sale Price</div>
+        <div class="hero-sub"><span id="ticketQty" class="tnum">0</span> pcs · <span id="ticketSheets" class="tnum">0</span> sheets</div>
+        <div class="hero-price"><sup>₹</sup><span id="ticketTotal" class="tnum">0</span></div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="t">Cost / pc</div>
+            <div class="v tnum" id="costPerPc">₹0</div>
+          </div>
+          <div class="stat sale">
+            <div class="t">Sale price / pc</div>
+            <div class="v tnum" id="pricePerPc">₹0</div>
+          </div>
+        </div>
+
+        <div class="share-row">
+          <button class="btn" id="copyBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy quote
+          </button>
+          <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 5 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.4 13.5 3.4 12c0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6-3.9 8.6-8.6 8.6z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <button class="reset-btn" id="resetRates" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.5 15a9 9 0 1 0 2-9.5L1 10"/></svg>
+        Reset — restore default rates
+      </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <section class="card area-s2">
+      <div class="card-head">
+        <div class="title"><span class="step-no">2</span><h2>Rates &amp; Margin</h2></div>
+        <div class="meta">Editable — updates instantly</div>
+      </div>
+
+      <div class="rate-grid">
+        <div class="field"><label class="label" style="text-transform:none;">Paper <span class="unit">₹/sheet</span></label><input type="number" id="rPaper" min="0" step="0.1" value="1"></div>
+        <div class="field"><label class="label" style="text-transform:none;">Printing <span class="unit">₹/sheet</span></label><input type="number" id="rPrint" min="0" step="0.1" value="13"></div>
+        <div class="field"><label class="label" style="text-transform:none;">Cutting <span class="unit">₹/pc</span></label><input type="number" id="rCut" min="0" step="0.01" value="1.25"></div>
+        <div class="field"><label class="label" style="text-transform:none;">Cutting minimum <span class="unit">₹</span></label><input type="number" id="rCutMin" min="0" step="1" value="100"></div>
+        <div class="field"><label class="label" style="text-transform:none;">Packing <span class="unit">₹/tier</span></label><input type="number" id="rPack" min="0" step="1" value="200"></div>
+        <div class="field"><label class="label" style="text-transform:none;">Packing tier <span class="unit">pcs</span></label><input type="number" id="rPackTier" min="1" step="1" value="500"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Paper cost in total</span>
+        <div class="pills cols-2" id="paperSeg" role="group" aria-label="Include paper cost">
+          <button type="button" class="pill" data-val="0" aria-pressed="true">Excluded</button>
+          <button type="button" class="pill" data-val="1" aria-pressed="false">Included</button>
+        </div>
+      </div>
+
+      <div class="row2" style="margin-top:16px;">
+        <div class="field">
+          <label class="label">Margin %</label>
+          <input type="number" id="margin" min="0" step="1" value="40">
+          <div class="hint" id="marginHint"></div>
+        </div>
+        <div class="field">
+          <label class="label">Margin threshold <span style="text-transform:none;font-weight:400;">(pcs)</span></label>
+          <input type="number" id="rMarginThresh" min="0" step="1" value="100">
+        </div>
+      </div>
+      <div class="row2" style="margin-top:14px;">
+        <div class="field" style="margin-top:0;">
+          <label class="label" style="text-transform:none;">Margin % up to threshold</label>
+          <input type="number" id="rMarginLow" min="0" step="1" value="60">
+        </div>
+        <div class="field" style="margin-top:0;">
+          <label class="label" style="text-transform:none;">Margin % above threshold</label>
+          <input type="number" id="rMarginHigh" min="0" step="1" value="40">
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="card area-s3">
+      <div class="card-head">
+        <div class="title"><span class="step-no">3</span><h2>Standard Price List</h2></div>
+        <div class="meta">Auto margin by tier</div>
+      </div>
+      <table class="tiers" id="tierTable">
+        <thead><tr><th>Qty</th><th>Sheets</th><th>Cost/pc</th><th>Price/pc</th></tr></thead>
+        <tbody id="tierBody"></tbody>
+      </table>
+      <div class="list-copy-row"><button type="button" id="copyListBtn">Copy full list</button></div>
+    </section>
+
+  </div>
+</div>
+
+<footer class="page-footer">Dangler pricing calculator · rates editable above · figures are estimates, confirm before quoting</footer>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PCS_PER_SHEET = { a3: 1, a4: 2, a5: 4 };
+  var TIER_QTYS = [24, 48, 96, 196, 1000];
+
+  var state = { sheetSize: "a5", includePaper: false };
+  var marginTouched = false;
+  var toastTimer = null;
+
+  var els = {
+    qtySeg: document.getElementById("qtySeg"),
+    qty: document.getElementById("qty"),
+    sheetSeg: document.getElementById("sheetSeg"),
+    customPcs: document.getElementById("customPcs"),
+    customPcsWrap: document.getElementById("customPcsWrap"),
+    sheetsReq: document.getElementById("sheetsReq"),
+    paperSeg: document.getElementById("paperSeg"),
+
+    margin: document.getElementById("margin"),
+    marginHint: document.getElementById("marginHint"),
+
+    rPaper: document.getElementById("rPaper"), rPrint: document.getElementById("rPrint"),
+    rCut: document.getElementById("rCut"), rCutMin: document.getElementById("rCutMin"),
+    rPack: document.getElementById("rPack"), rPackTier: document.getElementById("rPackTier"),
+    rMarginThresh: document.getElementById("rMarginThresh"), rMarginLow: document.getElementById("rMarginLow"),
+    rMarginHigh: document.getElementById("rMarginHigh"), resetRates: document.getElementById("resetRates"),
+
+    ticketQty: document.getElementById("ticketQty"), ticketSheets: document.getElementById("ticketSheets"),
+    ticketTotal: document.getElementById("ticketTotal"), costPerPc: document.getElementById("costPerPc"),
+    pricePerPc: document.getElementById("pricePerPc"),
+
+    copyBtn: document.getElementById("copyBtn"), waBtn: document.getElementById("waBtn"),
+    copyListBtn: document.getElementById("copyListBtn"), tierBody: document.getElementById("tierBody"),
+    toast: document.getElementById("toast")
+  };
+
+  TIER_QTYS.forEach(function (q) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "pill"; b.setAttribute("data-qty", q); b.setAttribute("aria-pressed", "false");
+    b.textContent = q.toLocaleString("en-IN");
+    els.qtySeg.appendChild(b);
+  });
+
+  function num(el, fallback) { var v = parseFloat(el.value); return isFinite(v) ? v : fallback; }
+  function rupee(n) { if (!isFinite(n)) n = 0; return "₹" + n.toLocaleString("en-IN", { maximumFractionDigits: 2, minimumFractionDigits: 2 }); }
+  function rupeeWhole(n) { if (!isFinite(n)) n = 0; return Math.round(n).toLocaleString("en-IN"); }
+
+  function getRates() {
+    return {
+      paper: num(els.rPaper, 1), print: num(els.rPrint, 13), cut: num(els.rCut, 1.25),
+      cutMin: num(els.rCutMin, 100), pack: num(els.rPack, 200), packTier: Math.max(1, num(els.rPackTier, 500)),
+      marginThresh: num(els.rMarginThresh, 100), marginLow: num(els.rMarginLow, 60), marginHigh: num(els.rMarginHigh, 40)
+    };
+  }
+  function pcsPerSheet() {
+    if (state.sheetSize === "custom") return Math.max(1, num(els.customPcs, 1));
+    return PCS_PER_SHEET[state.sheetSize] || 1;
+  }
+  function suggestedMargin(qty, rates) { return qty <= rates.marginThresh ? rates.marginLow : rates.marginHigh; }
+
+  function computeCost(qty, pps, rates) {
+    var sheets = Math.ceil(qty / pps);
+    var paper = sheets * rates.paper;
+    var printing = sheets * rates.print;
+    var cutting = Math.max(qty * rates.cut, rates.cutMin);
+    var packing = Math.ceil(qty / rates.packTier) * rates.pack;
+    return { sheets: sheets, paper: paper, printing: printing, cutting: cutting, packing: packing, totalNoPaper: printing + cutting + packing };
+  }
+
+  function syncQtyPills(qty) {
+    var btns = els.qtySeg.querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute("aria-pressed", parseInt(btns[i].getAttribute("data-qty"), 10) === qty ? "true" : "false");
+    }
+  }
+
+  function render() {
+    var rates = getRates();
+    var qty = Math.max(0, Math.floor(num(els.qty, 0)));
+    var pps = pcsPerSheet();
+    var includePaper = state.includePaper;
+
+    var c = computeCost(qty || 0, pps, rates);
+    var total = c.totalNoPaper + (includePaper ? c.paper : 0);
+    var perPiece = qty > 0 ? total / qty : 0;
+
+    var suggested = suggestedMargin(qty, rates);
+    if (!marginTouched) els.margin.value = suggested;
+    els.marginHint.innerHTML = "Suggested " + suggested + "% for this qty — <button type=\"button\" class=\"link\" id=\"useSuggested\">use it</button>";
+    var useBtn = document.getElementById("useSuggested");
+    if (useBtn) useBtn.addEventListener("click", function () { marginTouched = false; els.margin.value = suggested; render(); });
+
+    var margin = num(els.margin, suggested);
+    var salePerPc = perPiece * (1 + margin / 100);
+    var saleTotal = salePerPc * qty;
+
+    els.ticketQty.textContent = qty.toLocaleString("en-IN");
+    els.ticketSheets.textContent = c.sheets.toLocaleString("en-IN");
+    els.ticketTotal.textContent = rupeeWhole(saleTotal);
+    els.costPerPc.textContent = rupee(perPiece);
+    els.pricePerPc.textContent = rupee(salePerPc);
+    els.sheetsReq.textContent = c.sheets.toLocaleString("en-IN");
+
+    els.customPcsWrap.style.display = state.sheetSize === "custom" ? "block" : "none";
+    syncQtyPills(qty);
+
+    renderTiers(rates, qty, pps, includePaper, margin);
+    saveState();
+  }
+
+  function renderTiers(rates, currentQty, pps, includePaper, currentMargin) {
+    var rows = TIER_QTYS.map(function (q) { return { qty: q, custom: false }; });
+    var exists = TIER_QTYS.indexOf(currentQty) !== -1;
+    if (currentQty > 0 && !exists) { rows.push({ qty: currentQty, custom: true }); rows.sort(function (a, b) { return a.qty - b.qty; }); }
+
+    els.tierBody.innerHTML = "";
+    rows.forEach(function (r) {
+      var c = computeCost(r.qty, pps, rates);
+      var total = c.totalNoPaper + (includePaper ? c.paper : 0);
+      var perPc = r.qty > 0 ? total / r.qty : 0;
+      var margin = r.custom ? currentMargin : suggestedMargin(r.qty, rates);
+      var sale = perPc * (1 + margin / 100);
+      var tr = document.createElement("tr");
+      if (r.custom) tr.className = "current";
+      tr.innerHTML = "<td>" + r.qty.toLocaleString("en-IN") + "</td><td class=\"tnum\">" + c.sheets +
+        "</td><td class=\"tnum\">" + rupee(perPc) + "</td><td class=\"price tnum\">" + rupee(sale) + "</td>";
+      els.tierBody.appendChild(tr);
+    });
+  }
+
+  function sheetLabel() { return state.sheetSize === "custom" ? "Custom (" + pcsPerSheet() + "/sheet)" : state.sheetSize.toUpperCase(); }
+
+  function buildQuoteText() {
+    var qty = Math.max(0, Math.floor(num(els.qty, 0)));
+    var rates = getRates();
+    var pps = pcsPerSheet();
+    var c = computeCost(qty, pps, rates);
+    var total = c.totalNoPaper + (state.includePaper ? c.paper : 0);
+    var perPiece = qty > 0 ? total / qty : 0;
+    var margin = num(els.margin, suggestedMargin(qty, rates));
+    var salePerPc = perPiece * (1 + margin / 100);
+    var saleTotal = salePerPc * qty;
+    return "*Sparsh Media — Dangler Pricing*\nSize: " + sheetLabel() + "\nQty: " + qty.toLocaleString("en-IN") +
+      " pcs\nPrice: " + rupee(salePerPc) + " / pc\nTotal: ₹" + rupeeWhole(saleTotal);
+  }
+
+  function buildListText() {
+    var rates = getRates();
+    var pps = pcsPerSheet();
+    var lines = ["*Sparsh Media — Dangler Price List (" + sheetLabel() + ")*"];
+    TIER_QTYS.forEach(function (q) {
+      var c = computeCost(q, pps, rates);
+      var total = c.totalNoPaper + (state.includePaper ? c.paper : 0);
+      var perPc = q > 0 ? total / q : 0;
+      var margin = suggestedMargin(q, rates);
+      var sale = perPc * (1 + margin / 100);
+      lines.push(q.toLocaleString("en-IN") + " pcs — " + rupee(sale) + " / pc");
+    });
+    return lines.join("\n");
+  }
+
+  function showToast(msg) {
+    els.toast.textContent = msg; els.toast.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { els.toast.classList.remove("show"); }, 1600);
+  }
+
+  function copyText(text, okMsg) {
+    function done(ok) { showToast(ok ? okMsg : "Couldn't copy — select & copy manually"); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+      } else fallback();
+    } catch (e) { fallback(); }
+    function fallback() {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        var ok = document.execCommand("copy"); document.body.removeChild(ta); done(ok);
+      } catch (e2) { done(false); }
+    }
+  }
+
+  function updateWaLink() { els.waBtn.href = "https://wa.me/?text=" + encodeURIComponent(buildQuoteText()); }
+
+  function saveState() {
+    try {
+      var s = {
+        sheetSize: state.sheetSize, includePaper: state.includePaper, customPcs: els.customPcs.value,
+        qty: els.qty.value, margin: els.margin.value, marginTouched: marginTouched,
+        rPaper: els.rPaper.value, rPrint: els.rPrint.value, rCut: els.rCut.value, rCutMin: els.rCutMin.value,
+        rPack: els.rPack.value, rPackTier: els.rPackTier.value, rMarginThresh: els.rMarginThresh.value,
+        rMarginLow: els.rMarginLow.value, rMarginHigh: els.rMarginHigh.value
+      };
+      localStorage.setItem("sparsh_dangler_calc_v2", JSON.stringify(s));
+    } catch (e) { /* storage unavailable */ }
+  }
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem("sparsh_dangler_calc_v2");
+      if (!raw) return;
+      var s = JSON.parse(raw);
+      if (s.sheetSize) selectSheet(s.sheetSize, true);
+      if (typeof s.includePaper === "boolean") selectPaper(s.includePaper, true);
+      if (s.customPcs) els.customPcs.value = s.customPcs;
+      if (s.qty) els.qty.value = s.qty;
+      if (s.margin) els.margin.value = s.margin;
+      marginTouched = !!s.marginTouched;
+      ["rPaper","rPrint","rCut","rCutMin","rPack","rPackTier","rMarginThresh","rMarginLow","rMarginHigh"].forEach(function (k) {
+        if (s[k] !== undefined && s[k] !== "") els[k].value = s[k];
+      });
+    } catch (e) { /* ignore corrupt state */ }
+  }
+
+  function selectSheet(size, silent) {
+    state.sheetSize = size;
+    var btns = els.sheetSeg.querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-size") === size ? "true" : "false");
+    if (!silent) { render(); updateWaLink(); }
+  }
+  function selectPaper(include, silent) {
+    state.includePaper = include;
+    var btns = els.paperSeg.querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) btns[i].setAttribute("aria-pressed", (btns[i].getAttribute("data-val") === "1") === include ? "true" : "false");
+    if (!silent) { render(); updateWaLink(); }
+  }
+
+  els.sheetSeg.addEventListener("click", function (e) { var b = e.target.closest("button[data-size]"); if (b) selectSheet(b.getAttribute("data-size")); });
+  els.paperSeg.addEventListener("click", function (e) { var b = e.target.closest("button[data-val]"); if (b) selectPaper(b.getAttribute("data-val") === "1"); });
+  els.qtySeg.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-qty]");
+    if (!b) return;
+    els.qty.value = b.getAttribute("data-qty");
+    render(); updateWaLink();
+  });
+
+  els.margin.addEventListener("input", function () { marginTouched = true; render(); updateWaLink(); });
+
+  [els.qty, els.customPcs, els.rPaper, els.rPrint, els.rCut, els.rCutMin, els.rPack, els.rPackTier,
+   els.rMarginThresh, els.rMarginLow, els.rMarginHigh].forEach(function (el) {
+    el.addEventListener("input", function () { render(); updateWaLink(); });
+    el.addEventListener("change", function () { render(); updateWaLink(); });
+  });
+
+  els.resetRates.addEventListener("click", function () {
+    els.rPaper.value = 1; els.rPrint.value = 13; els.rCut.value = 1.25; els.rCutMin.value = 100;
+    els.rPack.value = 200; els.rPackTier.value = 500;
+    els.rMarginThresh.value = 100; els.rMarginLow.value = 60; els.rMarginHigh.value = 40;
+    selectPaper(false, true);
+    marginTouched = false;
+    render(); updateWaLink();
+    showToast("Rates reset");
+  });
+
+  els.copyBtn.addEventListener("click", function () { copyText(buildQuoteText(), "Quote copied"); });
+  els.copyListBtn.addEventListener("click", function () { copyText(buildListText(), "Price list copied"); });
+  els.waBtn.addEventListener("click", function () { updateWaLink(); });
+
+  loadState();
+  render();
+  updateWaLink();
+})();
+</script>
+</body>
+</html>
